@@ -40,7 +40,8 @@
     color-scheme:dark;
   }
 
-  *{box-sizing:border-box}
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:78px}
   body{
     margin:0;
     background:var(--ink);
@@ -99,7 +100,7 @@
     .topbar .wrap{min-height:58px;gap:8px}
     .mark b{font-size:13px;letter-spacing:.06em}
     .mark .logo{width:42px;height:24px}
-    .btn{width:100%;justify-content:center}
+    .hero-cta .btn,.pkg .btn{width:100%;justify-content:center}
     .hero{padding-top:36px}
     .hero .wrap{gap:24px}
     .hero h1{font-size:clamp(30px,13vw,52px)}
@@ -116,6 +117,11 @@
     .tile.wide{grid-column:auto}
     .tile.wide .frame{aspect-ratio:4/3}
     footer .wrap{flex-direction:column;align-items:flex-start}
+  }
+
+  @media (max-width:420px){
+    .mark b{display:none}
+    .topbar .btn{padding-inline:14px;font-size:12px}
   }
 
   .btn{
@@ -182,7 +188,7 @@
   }
 
   /* ---------- sections ---------- */
-  section{padding-block:clamp(46px,7vw,86px);border-top:1px solid var(--line)}
+  section{padding-block:clamp(46px,7vw,86px);border-top:1px solid var(--line);scroll-margin-top:78px}
   .sec-head{max-width:60ch;margin-bottom:clamp(26px,4vw,44px)}
   .sec-head h2{
     font-variation-settings:"wdth" 125;font-weight:700;
@@ -228,12 +234,6 @@
   .tile .frame{
     aspect-ratio:4/5;position:relative;display:grid;place-items:center;
     border-bottom:1px solid var(--line);
-  }
-  .tile .frame span{
-    font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:600;
-    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,230,.55);
-    border:1px solid rgba(244,239,230,.22);border-radius:999px;padding:6px 12px;
-    background:rgba(11,10,9,.35);
   }
   .f1{background:linear-gradient(145deg,#2A1E12,#0E0C0A 70%)}
   .f2{background:linear-gradient(145deg,#12211F,#0E0C0A 70%)}
@@ -305,8 +305,6 @@
   .pkg{border:1px solid var(--line);border-radius:16px;padding:26px 24px;background:var(--ink-2);display:flex;flex-direction:column;gap:14px}
   .pkg.feature{border-color:var(--amber-deep);background:linear-gradient(180deg,#191410,#121010)}
   .pkg h3{font-variation-settings:"wdth" 112;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:.06em}
-  .price{font-family:var(--display);font-variation-settings:"wdth" 125;font-weight:800;font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
-  .price small{display:block;font-family:var(--body);font-weight:400;font-size:12px;letter-spacing:.04em;color:var(--bone-faint);margin-top:8px;text-transform:none}
   .pkg ul{margin:0;padding-left:18px;color:var(--bone-dim);font-size:14px;line-height:1.75;flex:1}
   .tag{align-self:flex-start;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber-deep);border-radius:999px;padding:4px 10px}
 
@@ -344,6 +342,14 @@
   footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--bone-faint)}
 
   a:focus-visible,.svc:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+  @media (hover:none){
+    .btn:hover{transform:none}
+    .tile.filled:hover .frame img,a.tile.video:hover .frame img{transform:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition-duration:.01ms!important}
+  }
 </style>
 <style>
   html{-webkit-text-size-adjust:100%}
@@ -526,43 +532,40 @@
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Packages</p>
-        <h2>Simple rates, no surprises</h2>
-        <p>Every package includes the shoot, the edit and the files ready to post. Custom quotes on request.</p>
+        <h2>Booking options built around you</h2>
+        <p>Choose the option closest to what you need, then enquire for a quote tailored to your date, location and project.</p>
       </div>
       <div class="pkgs">
         <div class="pkg">
           <h3>Starter</h3>
-          <div class="price">$15,000<small>JMD · per flyer set</small></div>
           <ul>
             <li>1 flyer, 3 sizes</li>
             <li>Story + feed versions</li>
             <li>2 rounds of revisions</li>
             <li>48-hour delivery</li>
           </ul>
-          <a class="btn ghost" href="#contact">Enquire</a>
+          <a class="btn ghost" href="#contact">Enquire for booking</a>
         </div>
         <div class="pkg feature">
           <span class="tag">Most booked</span>
           <h3>Shoot &amp; Push</h3>
-          <div class="price">$40,000<small>JMD · per campaign</small></div>
           <ul>
             <li>2-hour shoot, 15 edited shots</li>
             <li>2 reels cut from the session</li>
             <li>3 flyers or graphics</li>
             <li>1 week of posting</li>
           </ul>
-          <a class="btn" href="#contact">Book this</a>
+          <a class="btn" href="#contact">Enquire for booking</a>
         </div>
         <div class="pkg">
           <h3>Monthly management</h3>
-          <div class="price">$85,000<small>JMD · per month</small></div>
           <ul>
             <li>12 posts + 8 stories</li>
             <li>1 shoot day included</li>
             <li>Ad campaign management</li>
             <li>Monthly growth report</li>
           </ul>
-          <a class="btn ghost" href="#contact">Enquire</a>
+          <a class="btn ghost" href="#contact">Enquire for booking</a>
         </div>
       </div>
     </div>
